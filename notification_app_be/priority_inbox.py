@@ -14,7 +14,12 @@ MOCK_DATA = [
     {"id": 3, "type": "event", "massage": "Cultural Fest", "timestamp": "22-01-2026 18:00:00"},
     {"id": 4, "type": "result", "massage": "Semester 5 Results", "timestamp": "23-01-2026 12:00:00"},
     {"id": 5, "type": "placement", "massage": "Microsoft Interviews", "timestamp": "24-01-2026 10:30:00"},
-    {"id": 6, "type": "event", "massage": "Guest Lecture", "timestamp": "25-01-2026 14:00:00"}
+    {"id": 6, "type": "event", "massage": "Guest Lecture", "timestamp": "25-01-2026 14:00:00"},
+    {"id": 7, "type": "result", "massage": "End Semester Schedule", "timestamp": "26-01-2026 09:00:00"},
+    {"id": 8, "type": "placement", "massage": "Amazon Pre-placement Talk", "timestamp": "27-01-2026 10:00:00"},
+    {"id": 9, "type": "event", "massage": "Robotics Workshop", "timestamp": "28-01-2026 14:00:00"},
+    {"id": 10, "type": "result", "massage": "Internal Marks Updated", "timestamp": "29-01-2026 16:00:00"},
+    {"id": 11, "type": "placement", "massage": "TCS Recruitment", "timestamp": "30-01-2026 11:00:00"}
 ]
 
 def authenticate() -> str:
@@ -76,13 +81,12 @@ def main():
     print("Fetching notifications...")
     notifications = get_notifications(API_URL, token)
     
-    # If API returned an empty list, also use mock data to guarantee output
     if not notifications:
         print("Live data is empty. Falling back to MOCK DATA.")
         notifications = MOCK_DATA
         
     if notifications:
-        top_notifications = get_priority_inbox(notifications, top_n=5)
+        top_notifications = get_priority_inbox(notifications, top_n=10)
         
         print("\n--- JSON Output ---")
         print(json.dumps(top_notifications, indent=2))
